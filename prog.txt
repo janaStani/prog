@@ -1,0 +1,6 @@
+GUI, 
+patterns (so, loops), 
+recursive data structures linked list (binary/triary trees), 
+be able to explain certain concepts like recursion or 
+what is an interface 
+strings

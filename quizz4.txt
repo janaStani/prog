@@ -1,0 +1,9 @@
+Recursion is a programming technique where a function calls itself in order to solve a problem. 
+It is a powerful tool that can be used to simplify complex problems, but it can also make the 
+code difficult to understand and debug. In practice, recursion should be used with caution 
+because it can lead to infinite loops or stack overflow errors if not used properly. However, 
+when used correctly, recursion can make the code more elegant and readable, especially when 
+dealing with problems that have a recursive structure, such as tree traversals, permutations, 
+and backtracking. In my personal opinion, programmers should use recursion when it makes the 
+code more readable, but they should also be mindful of the potential pitfalls and test their 
+code thoroughly to ensure it runs correctly.

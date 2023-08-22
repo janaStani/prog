@@ -1,0 +1,204 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.util.Random;
+
+public class GUIProgram {
+    public static final int EASY = 1;
+    public static final int MEDIUM = 2;
+    public static final int HARD = 3;
+
+    // GUI components
+    private JFrame frame;
+    private JPanel panel;
+    private JLabel targetValueLabel;
+    private JLabel currentSumLabel;
+    private JLabel movesLabel;
+    private JButton[][] buttons;
+    private JMenuBar menuBar;
+    private JMenu menu;
+    
+    // Game Variables
+    private int m;
+    private int n;
+    private int targetValue;
+    private int currentSum;
+    private int moves;
+    private int difficulty;
+    private int currentOperation;
+    private final int MAX_NUMBER = 9;
+    private final int MIN_NUMBER = 0;
+    
+    public GUIProgram() {
+        initComponents();
+        initGame();
+    }
+    
+    // Initializes all the components 
+    private void initComponents() {
+        frame = new JFrame("GUI Program");
+        panel = new JPanel(new GridLayout(m, n));
+        targetValueLabel = new JLabel("Target Value: ");
+        currentSumLabel = new JLabel("Current Sum: ");
+        movesLabel = new JLabel("Moves: ");
+        buttons = new JButton[m][n];
+        menuBar = new JMenuBar();
+        menu = new JMenu("Game");
+        
+        // Adds the menu bar to the frame
+        frame.setJMenuBar(menuBar);
+        menuBar.add(menu);
+        
+        // Adds the menu items to the menu
+        JMenuItem newGame = new JMenuItem("New Game");
+        JMenuItem setSize = new JMenuItem("Set Size");
+        JMenuItem setMoves = new JMenuItem("Set Moves");
+        JMenuItem setTargetValue = new JMenuItem("Set Target Value");
+        JMenuItem setDifficulty = new JMenuItem("Set Difficulty");
+        JMenuItem saveGame = new JMenuItem("Save Game");
+        JMenuItem loadGame = new JMenuItem("Load Game");
+        menu.add(newGame);
+        menu.add(setSize);
+        menu.add(setMoves);
+        menu.add(setTargetValue);
+        menu.add(setDifficulty);
+        menu.add(saveGame);
+        menu.add(loadGame);
+        
+        // Adds action listeners to the menu items
+        newGame.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                initGame();
+            }
+        });
+        setSize.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                setSize();
+            }
+        });
+        setMoves.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                setMoves();
+            }
+        });
+        setTargetValue.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                setTargetValue();
+            }
+        });
+        setDifficulty.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                setDifficulty();
+            }
+        });
+        saveGame.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                saveGame();
+            }
+        });
+        loadGame.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                loadGame();
+            }
+        });
+    }
+    
+    // Initializes the game
+    private void initGame() {
+        // Sets the default values
+        m = 4;
+        n = 4;
+        targetValue = 100;
+        currentSum = 0;
+        moves = 10;
+        difficulty = EASY;
+        currentOperation = 0;
+        
+        // Randomly generates the numbers
+        Random rand = new Random();
+        int[][] numbers = new int[m][n];
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                numbers[i][j] = rand.nextInt(MAX_NUMBER - MIN_NUMBER + 1) + MIN_NUMBER;
+            }
+        }
+        
+        // Adds the buttons to the panel
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                buttons[i][j] = new JButton(Integer.toString(numbers[i][j]));
+                panel.add(buttons[i][j]);
+            }
+        }
+        
+        // Adds the labels to the panel
+        panel.add(targetValueLabel);
+        panel.add(currentSumLabel);
+        panel.add(movesLabel);
+        
+        // Updates the labels
+        targetValueLabel.setText("Target Value: " + targetValue);
+        currentSumLabel.setText("Current Sum: " + currentSum);
+        movesLabel.setText("Moves: " + moves);
+        
+        // Adds the panel to the frame
+        frame.add(panel);
+        frame.setSize(400, 400);
+        frame.setVisible(true);
+    }
+    
+    // Sets the size of the game
+    private void setSize() {
+        String mString = JOptionPane.showInputDialog(frame, "Enter m: ");
+        String nString = JOptionPane.showInputDialog(frame, "Enter n: ");
+        m = Integer.parseInt(mString);
+        n = Integer.parseInt(nString);
+        panel.setLayout(new GridLayout(m, n));
+        frame.pack();
+    }
+    
+    // Sets the number of moves
+    private void setMoves() {
+        String movesString = JOptionPane.showInputDialog(frame, "Enter the number of moves: ");
+        moves = Integer.parseInt(movesString);
+        movesLabel.setText("Moves: " + moves);
+    }
+    
+    // Sets the target value
+    private void setTargetValue() {
+        String targetValueString = JOptionPane.showInputDialog(frame, "Enter the target value: ");
+        targetValue = Integer.parseInt(targetValueString);
+        targetValueLabel.setText("Target Value: " + targetValue);
+    }
+    
+    // Sets the difficulty
+    private void setDifficulty() {
+        String[] options = {"Easy", "Medium", "Hard"};
+        int difficultyInt = JOptionPane.showOptionDialog(frame, "Choose difficulty: ", "Difficulty", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+        switch (difficultyInt) {
+            case 0:
+                difficulty = EASY;
+                break;
+            case 1:
+                difficulty = MEDIUM;
+                break;
+            case 2:
+                difficulty = HARD;
+                break;
+        }
+    }
+    
+    // Saves the game
+    private void saveGame() {
+        // TODO
+    }
+    
+    // Loads the game
+    private void loadGame() {
+        // TODO
+    }
+    
+    public static void main(String[] args) {
+        new GUIProgram();
+    }
+}

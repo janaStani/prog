@@ -1,0 +1,16 @@
+1.1 
+Write a program in Java programming language that opens a 300x200 window with two buttons, 
+the first at the top of the window, the other at the bottom. On the top button it says "100" 
+and on the other one "0", When pressing the first button, the number on the second button is 
+reduced by 1, when the second button is pressed, the number on the first button is reduced by 1.
+
+1.2. 
+We want to present the animal world. In the Java programming language, implement the following 
+entities (specify whether the interface or class) for Animal (has the properties name and age), 
+the Reptile (has all Animal properties and the property of the length and method print) and Bird 
+(has all Animal properties and a property flight and a method of print). Correctly establish relations 
+between entities. Also show the use of these entities (Birds and Reptiles).
+
+1.3. 
+Write a program in Java programming language that reads an array of strings!
+Program should write the shortest string from the array.
